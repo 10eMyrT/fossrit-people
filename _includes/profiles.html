@@ -1,8 +1,8 @@
 {% assign page_category = (include.content | remove: ".html") %}
 <div class="search_bar">
-    <input id="name" type="text" placeholder="Search for profile..." onkeyup="document.write(search_function())">
+    <input id="name" type="text" placeholder="Search for profile..." onkeyup="search_function()">
 </div>
-<div class="profile_list">
+<div class="profile_list" id="everyone">
     {% for category_pair in site.data %}
         {% assign category_key = (category_pair[0] | downcase ) %}
         {% assign category_value = category_pair[1] %}
@@ -60,7 +60,7 @@
         input = document.getElementById("name");
         filter = input.value.toUpperCase();
         // get the first element in a div, element which is the name
-        people = document.getElementById("a_person").getElementsByTagName("*")[0];
+        people = document.getElementById("everyone").getElementsByTagName("*")[0];
         for (index = 0; index < people.length; index++) {
             a = people[index].getElementsByTagName("a")[0];
             txtValue = a.textContent || a.innerText;
