@@ -1,6 +1,6 @@
 {% assign page_category = (include.content | remove: ".html") %}
 <div class="search_bar">
-    <input id="name" type="text" placeholder="Search for profile..." onkeyup="search_function()">
+    <input id="name" type="text" placeholder="Search for profile..." onkeyup="document.write(search_function())">
 </div>
 <div class="profile_list">
     {% for category_pair in site.data %}
