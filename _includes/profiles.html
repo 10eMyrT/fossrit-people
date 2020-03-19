@@ -1,6 +1,6 @@
 {% assign page_category = (include.content | remove: ".html") %}
 <div class="search_bar">
-    <input type="text" placeholder="Search for profile...">
+    <input id="name" type="text" placeholder="Search for profile..." onkeyup="search_function()">
 </div>
 <div class="profile_list">
     {% for category_pair in site.data %}
@@ -17,7 +17,7 @@
         <div class="category">
             {% for person_key_pair in category_value %}
                 {% assign person = person_key_pair[1] %}
-                <div class="person">
+                <div class="person" id="a_person">
                     <h3>
                     {% if person.blog %}
                     <a target="_blank" href="{{person.blog}}">{{ person.name }}</a>
@@ -53,4 +53,24 @@
         </div>
     {% endfor %}
 </div>
+
+<script>
+    function search_function() {
+        var input, filter, people, a, index, txtValue;
+        input = document.getElementById("name");
+        filter = input.value.toUpperCase();
+        // get the first element in a div, element which is the name
+        people = document.getElementById("a_person").getElementsByTagName("*")[0];
+        for (index = 0; index < people.length; index++) {
+            a = people[index].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                people[index].style.display = "";
+            } else {
+                people[index].style.display = "none";
+            }
+        }
+    }
+</script>
+
 Built on {{ site.time | date_to_rfc822 }}
