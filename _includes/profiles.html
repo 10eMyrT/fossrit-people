@@ -20,7 +20,7 @@
                 <div class="person" id="a_person">
                     <h3>
                     {% if person.blog %}
-                    <a target="_blank" href="{{person.blog}}">{{ person.name }}</a>
+                    <a id="the_name" target="_blank" href="{{person.blog}}">{{ person.name }}</a>
                     {% else %}
                     {{ person.name }}
                     {% endif %}
@@ -60,9 +60,9 @@
         input = document.getElementById("name");
         filter = input.value.toUpperCase();
         // get the first element in a div, element which is the name
-        people = document.getElementById("everyone").getElementsByTagName("*")[0];
+        people = document.getElementById("a_person");
         for (index = 0; index < people.length; index++) {
-            a = people[index].getElementsByTagName("a")[0];
+            a = people[index].getElementById("the_name");
             txtValue = a.textContent || a.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 people[index].style.display = "";
